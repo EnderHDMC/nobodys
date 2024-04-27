@@ -1,0 +1,27 @@
+{
+  "name": "nobodys",
+  "version": "1.0.0",
+  "description": "Nobodys website",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnderHDMC/nobodys.git"
+  },
+  "author": "demalgee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnderHDMC/nobodys/issues"
+  },
+  "homepage": "https://github.com/EnderHDMC/nobodys#readme",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^0.35.1",
+    "express": "^4.19.2"
+  }
+}
