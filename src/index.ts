@@ -7,6 +7,7 @@ import http from 'http';
 import https from 'https';
 import express from 'express';
 import serveIndex from 'serve-index';
+import { Express } from 'express-serve-static-core';
 
 const port_http = process.env.PORT_HTTP || 8080;
 const port_https = process.env.PORT_HTTPS || 8081;
@@ -36,12 +37,19 @@ server_https.listen(port_https, () => {
     console.log(`Server started at https://localhost:${port_https}`);
 });
 
-app.use('/public', serveIndex('frontend', { icons: true }));
-app.use('/public', express.static('frontend'));
+serveFiles(app, 'public', { icons: true });
+serveFiles(app, '.well-known', { icons: true });
 
 app.get('/', function (_req, res) {
     res.redirect('/public');
 });
+
+function serveFiles(app: Express, path: string, indexOptions: serveIndex.Options | undefined) {
+    const webPath = `/${path}`;
+    path = `webroot/${path}`;
+    app.use(webPath, express.static(path))
+    app.use(webPath, serveIndex(path, indexOptions));
+}
 
 function readFileSyncSafe(file: string): string | Buffer {
     try {
