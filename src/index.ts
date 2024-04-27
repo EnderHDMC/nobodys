@@ -36,8 +36,12 @@ server_https.listen(port_https, () => {
     console.log(`Server started at https://localhost:${port_https}`);
 });
 
-app.use('/public', serveIndex('frontend'));
+app.use('/public', serveIndex('frontend', { icons: true }));
 app.use('/public', express.static('frontend'));
+
+app.get('/', function (_req, res) {
+    res.redirect('/public');
+});
 
 function readFileSyncSafe(file: string): string | Buffer {
     try {
