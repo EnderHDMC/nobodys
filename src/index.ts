@@ -1,4 +1,4 @@
-require('@dotenvx/dotenvx').config();
+require('dotenv-flow').config();
 
 import fs from 'fs';
 import path from 'path';
@@ -11,6 +11,7 @@ import { Express } from 'express-serve-static-core';
 
 const port_http = process.env.PORT_HTTP || 8080;
 const port_https = process.env.PORT_HTTPS || 8081;
+const hostname = process.env.HOSTNAME || "localhost"
 
 const ssl_path = process.env.SSL_PATH || '';
 const ssl_file_public_key = path.join(ssl_path, 'cert.pem');
@@ -31,10 +32,10 @@ const server_http = http.createServer(app);
 const server_https = https.createServer(options, app);
 
 server_http.listen(port_http, () => {
-    console.log(`Server started at http://localhost:${port_http}`);
+    console.log(`Server started at http://${hostname}:${port_http}`);
 });
 server_https.listen(port_https, () => {
-    console.log(`Server started at https://localhost:${port_https}`);
+    console.log(`Server started at https://${hostname}:${port_https}`);
 });
 
 serveFiles(app, 'public', { icons: true });

@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
+    "start-prod": "cross-env NODE_ENV=production npm run start",
+    "start-dev": "cross-env NODE_ENV=development npm run start",
     "watch": "tsc -w"
   },
   "repository": {
@@ -21,10 +23,11 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/serve-index": "^1.9.4",
+    "cross-env": "^7.0.3",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^0.35.1",
+    "dotenv-flow": "^4.1.0",
     "express": "^4.19.2",
     "serve-index": "^1.9.1"
   }
