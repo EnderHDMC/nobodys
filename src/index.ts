@@ -13,7 +13,7 @@ const port_http = process.env.PORT_HTTP || 8080;
 const port_https = process.env.PORT_HTTPS || 8081;
 const hostname = process.env.HOSTNAME || "localhost";
 
-const ssl_path = process.env.SSL_PATH || "";
+const ssl_path = process.env.SSL_PATH || `/etc/letsencrypt/live/${hostname}/`;
 const ssl_file_public_key = path.join(ssl_path, "cert.pem");
 const ssl_file_private_key = path.join(ssl_path, "privkey.pem");
 const ssl_file_chain = path.join(ssl_path, "chain.pem");
