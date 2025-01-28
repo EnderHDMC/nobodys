@@ -57,6 +57,7 @@ function readFileSyncSafe(file: string): string | Buffer {
         return fs.readFileSync(file);
     } catch (err) {
         console.error(`Error reading file: ${file}`);
+        console.error(err);
         return '';
     }
 }
