@@ -100,8 +100,9 @@ function isLocalhost(
 ) {
   // TODO: Bulletproof this
   //       What happens behind a proxy?
-  const local = ["127.0.0.1", "::1"];
+  const local = ["127.0.0.1", "::1", "::ffff:127.0.0.1"];
   const remote = req.socket.remoteAddress || "disconnect";
+  console.log("Remote:", { remote, ip: req.ip });
 
   if (!local.includes(remote)) {
     return res.status(403).send("Request from external source");
