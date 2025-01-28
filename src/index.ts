@@ -33,10 +33,12 @@ const server_http = http.createServer(app);
 const server_https = https.createServer(options, app);
 
 server_http.listen(port_http, () => {
-  console.log(`Server started at http://${hostname}:${port_http}`);
+  const port = hostname == "localhost" ? `:${port_http}` : "";
+  console.log(`Server started at http://${hostname}${port}`);
 });
 server_https.listen(port_https, () => {
-  console.log(`Server started at https://${hostname}:${port_https}`);
+  const port = hostname == "localhost" ? `:${port_https}` : "";
+  console.log(`Server started at https://${hostname}${port}`);
 });
 
 serveFiles(app, "public", { icons: true });
